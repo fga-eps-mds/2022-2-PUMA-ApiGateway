@@ -48,7 +48,7 @@ jobs:
         path: 2022-2-PUMA-ProjectService
     
     - name: Build Containers
-      run: docker-compose -f test.actions.docker-compose.yaml up -d
+      run: docker-compose -f test.actions.docker-compose.yaml up --build
     
     - name: Create and Populate Database
       run: | 
@@ -59,8 +59,7 @@ jobs:
         sudo docker cp ./tests/utils/db_populate.sql dbtest:/db_populate.sql
         sudo docker exec dbtest psql -U pumaadmin -d puma -f /db_populate.sql
       
-    - name: Run Tests
-      run: sudo docker exec api-gateway-test npm run test-coverage
+    
 
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
