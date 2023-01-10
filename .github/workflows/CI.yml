@@ -5,7 +5,9 @@ on:
     branches: 
       - dev
   pull_request:
-    types: [opened, reopened]
+    types: [opened, reopened, edited]
+env:
+  USER_PATH: 2022-2-PUMA-UserService
 
 jobs:
   build:
@@ -28,7 +30,7 @@ jobs:
         path: 2022-2-PUMA-UserService
     
     - name: test userService files
-      run: cat 2022-2-PUMA-UserService/sonar-project.properties
+      run: cat ../${USER_PATH}/dev.Dockerfile
 
     - name: Run npm install
       run: npm install
