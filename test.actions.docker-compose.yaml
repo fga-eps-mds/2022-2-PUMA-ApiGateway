@@ -1,17 +1,5 @@
 version: "3"
 services:
-    dbtest:
-        container_name: dbtest
-        image: postgres
-        environment:
-            POSTGRES_PASSWORD: ${DB_PASS}
-            POSTGRES_USER: ${DB_USER}
-            POSTGRES_DB: ${DB}
-            DATABASE_URL: ${DB_URL_TEST}
-        ports:
-            - "5432:5432"
-        networks:
-            - puma-network-test
     project-service-test:
         container_name: project-service-test
         environment:
@@ -21,8 +9,6 @@ services:
             dockerfile: dev.Dockerfile
         ports:
             - "3000:3000"
-        depends_on:
-            - dbtest
         volumes:
             - ./${PROJECT_PATH}:/app
             - /app/node_modules
@@ -46,8 +32,6 @@ services:
             dockerfile: dev.Dockerfile
         ports:
             - "3001:3001"
-        depends_on:
-            - dbtest
         volumes:
             - ./${USER_PATH}:/app
             - /app/node_modules
