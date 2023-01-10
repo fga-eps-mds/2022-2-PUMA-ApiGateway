@@ -68,7 +68,9 @@ jobs:
         IP_ADDRESS: localhost
         SECRET: kronk
 
-    
+    - name: test user test
+      run: |
+        sudo docker exec user-service-test npm run test-coverage
     - name: Create and Populate Database
       run: | 
         sudo docker cp ./tests/utils/db_drop.sql dbtest:/db_drop.sql
