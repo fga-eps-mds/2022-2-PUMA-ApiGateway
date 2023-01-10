@@ -14,6 +14,11 @@ env:
   DB_PASS: pumaadmin
   DB: puma
   IP_ADDRESS: localhost
+  SECRET: kronk
+  ENVIRONMENT: test
+  ALOCATE_PATH: 2022-2-PUMA-AlocateService
+  NOTIFY_PATH: 2022-2-PUMA-NotifyService
+  FRONT_PATH: 2022-2-PUMA-Frontend
 
 jobs:
   build:
