@@ -24,7 +24,7 @@ services:
         depends_on:
             - dbtest
         volumes:
-            - ${PROJECT_PATH}:/app
+            - ./${PROJECT_PATH}:/app
             - /app/node_modules
         networks:
             - puma-network-test
@@ -49,7 +49,7 @@ services:
         depends_on:
             - dbtest
         volumes:
-            - ${USER_PATH}:/app
+            - ./${USER_PATH}:/app
             - /app/node_modules
         networks:
             - puma-network-test
