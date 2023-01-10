@@ -30,7 +30,7 @@ jobs:
         path: 2022-2-PUMA-UserService
     
     - name: test userService files
-      run: cat ../${USER_PATH}/dev.Dockerfile
+      run: cat ${USER_PATH}/dev.Dockerfile
 
     - name: Run npm install
       run: npm install
