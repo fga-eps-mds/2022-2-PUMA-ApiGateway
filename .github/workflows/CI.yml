@@ -6,19 +6,6 @@ on:
       - dev
   pull_request:
     types: [opened, reopened, edited]
-env:
-  USER_PATH: 2022-2-PUMA-UserService 
-  PROJECT_PATH: 2022-2-PUMA-ProjectService
-  DB_URL_TEST: "postgres://pumaadmin:pumaadmin@localhost:5432/puma"
-  DB_USER: pumaadmin
-  DB_PASS: pumaadmin
-  DB: puma
-  IP_ADDRESS: localhost
-  SECRET: kronk
-  ENVIRONMENT: test
-  ALOCATE_PATH: 2022-2-PUMA-AlocateService
-  NOTIFY_PATH: 2022-2-PUMA-NotifyService
-  FRONT_PATH: 2022-2-PUMA-Frontend
 
 jobs:
   build:
@@ -67,8 +54,20 @@ jobs:
         repository: fga-eps-mds/2022-2-PUMA-ProjectService
         path: 2022-2-PUMA-ProjectService
     
-    - name: Build Containers
-      run: docker-compose -f test.actions.docker-compose.yaml up --build
+    - name: up containers 
+      uses: isbang/compose-action@v1.4.1
+      with:
+        compose-file: "./test.actions.docker-compose.yaml"
+      env:
+        USER_PATH: 2022-2-PUMA-UserService 
+        PROJECT_PATH: 2022-2-PUMA-ProjectService
+        DB_URL_TEST: "postgres://pumaadmin:pumaadmin@localhost:5432/puma"
+        DB_USER: pumaadmin
+        DB_PASS: pumaadmin
+        DB: puma
+        IP_ADDRESS: localhost
+        SECRET: kronk
+
     
     - name: Create and Populate Database
       run: | 
