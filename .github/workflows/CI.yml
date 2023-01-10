@@ -20,6 +20,15 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: 14.x
+        
+    - name: check userService
+      uses: actions/checkout@v3
+      with:
+        repository: fga-eps-mds/2022-2-PUMA-UserService
+        path: 2022-2-PUMA-UserService
+    
+    - name: test userService files
+      run: cat 2022-2-PUMA-UserService/sonar-project.properties
 
     - name: Run npm install
       run: npm install
