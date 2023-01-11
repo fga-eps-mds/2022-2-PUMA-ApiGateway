@@ -55,9 +55,6 @@ services:
             - puma-network-test
         command:
           [
-              "./wait-for-it.sh",
-              "host.docker.internal:5432",
-              "--",
               "npm",
               "run",
               "start-dev"
