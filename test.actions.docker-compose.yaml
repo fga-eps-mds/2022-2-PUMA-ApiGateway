@@ -39,7 +39,7 @@ services:
         environment:
             ENVIRONMENT: test
         build:
-            context: .
+            context: ${USER_PATH}/
             dockefile: test.Dockerfile
         ports:
             - 3001:3001
@@ -48,15 +48,6 @@ services:
         volumes:
             - ./${USER_PATH}:/app
             - /app/node_modules
-        command:
-          [
-              "./wait-for-it.sh",
-              "dbtest:5432",
-              "--",
-              "npm",
-              "run",
-              "start-dev"
-          ]
     api-gateway-test:
         container_name: api-gateway-test
         environment:
