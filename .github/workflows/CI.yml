@@ -55,7 +55,7 @@ jobs:
         path: 2022-2-PUMA-ProjectService
     
     - name: up containers 
-      run: sudo docker-compose -f test.actions.docker-compose.yaml --build 
+      run: docker-compose -f test.actions.docker-compose.yaml up 
       env:
         USER_PATH: 2022-2-PUMA-UserService 
         PROJECT_PATH: 2022-2-PUMA-ProjectService
