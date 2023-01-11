@@ -47,10 +47,13 @@ jobs:
     
     - name: Run make
       run: make test-coverage
-          
-    - name: Setup tmate session
-      if: success() || failure()
-      uses: mxschmitt/action-tmate@v3
+      env:
+        USER_PATH: 2022-2-PUMA-UserService 
+        PROJECT_PATH: 2022-2-PUMA-ProjectService
+        DB_USER: pumaadmin
+        DB_PASS: pumaadmin
+        DB: puma
+        DB_URL_TEST: postgres://pumaadmin:pumaadmin@172.17.0.1:5432/puma
 
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
