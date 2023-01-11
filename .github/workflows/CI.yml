@@ -13,26 +13,22 @@ jobs:
     defaults:
       run:
         working-directory: ./
-    services:
-      dbtest:
-        image: postgres            
-        ports:
-          - "5432:5432"
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-          --name dbtest 
-        env:
-          POSTGRES_PASSWORD: pumaadmin
-          POSTGRES_USER: pumaadmin
-          POSTGRES_DB: puma
-          PGUSER: postgres
-    env:
-      DB_HOST: localhost
-      DB_URL_TEST: postgres://pumaadmin:pumaadmin@dbtest:5432/puma
-      ENVIRONMENT: test
+    #services:
+    #  dbtest:
+    #    image: postgres            
+    #    ports:
+    #      - "5432:5432"
+    #    options: >-
+    #      --health-cmd pg_isready
+    #      --health-interval 10s
+    #      --health-timeout 5s
+    #      --health-retries 5
+    #      --name dbtest 
+    #    env:
+    #      POSTGRES_PASSWORD: pumaadmin
+    #      POSTGRES_USER: pumaadmin
+    #      POSTGRES_DB: puma
+    #      PGUSER: postgres
 
     steps:
     - uses: actions/checkout@v3
@@ -52,16 +48,13 @@ jobs:
       run: docker-compose -f test.actions.docker-compose.yaml up
       env:
         USER_PATH: 2022-2-PUMA-UserService 
-        PROJECT_PATH: 2022-2-PUMA-ProjectService
         DB_URL_TEST: "postgres://pumaadmin:pumaadmin@dbtest:5432/puma"
-        DB_URL: "postgres://pumaadmin:pumaadmin@dbtest:5432/puma"
         DB_USER: pumaadmin
         DB_PASS: pumaadmin
         DB: puma
-        IP_ADDRESS: localhost
-        SECRET: kronk
-        DB_HOST: localhost
-
+    - name: create network
+      run: |
+        puma-network-test
     - name: containers
       run: |
         docker container ps -a       
