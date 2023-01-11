@@ -13,22 +13,26 @@ jobs:
     defaults:
       run:
         working-directory: ./
-    #services:
-    #  dbtest:
-    #    image: postgres            
-    #    ports:
-    #      - "5432:5432"
-    #    options: >-
-    #      --health-cmd pg_isready
-    #      --health-interval 10s
-    #      --health-timeout 5s
-    #      --health-retries 5
-    #      --name dbtest 
-    #    env:
-    #      POSTGRES_PASSWORD: pumaadmin
-    #      POSTGRES_USER: pumaadmin
-    #      POSTGRES_DB: puma
-    #      PGUSER: postgres
+    services:
+      dbtest:
+        image: postgres            
+        ports:
+          - "5432:5432"
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+          --name dbtest 
+        env:
+          POSTGRES_PASSWORD: pumaadmin
+          POSTGRES_USER: pumaadmin
+          POSTGRES_DB: puma
+          PGUSER: postgres
+    env:
+      DB_HOST: localhost
+      DB_URL_TEST: postgres://pumaadmin:pumaadmin@localhost:5432/puma
+      ENVIRONMENT: test
 
     steps:
     - uses: actions/checkout@v3
@@ -44,18 +48,25 @@ jobs:
         repository: fga-eps-mds/2022-2-PUMA-UserService
         path: 2022-2-PUMA-UserService
     
+    - name: create network
+      run: | 
+          docker network create -d bridge puma-network-test
+          docker network connect puma-network-test dbtest
+    
     - name: up containers 
       run: docker-compose -f test.actions.docker-compose.yaml up
       env:
         USER_PATH: 2022-2-PUMA-UserService 
-        DB_URL_TEST: "postgres://pumaadmin:pumaadmin@dbtest:5432/puma"
+        PROJECT_PATH: 2022-2-PUMA-ProjectService
+        DB_URL_TEST: "postgres://pumaadmin:pumaadmin@localhost:5432/puma"
+        DB_URL: "postgres://pumaadmin:pumaadmin@localhost:5432/puma"
         DB_USER: pumaadmin
         DB_PASS: pumaadmin
         DB: puma
-        DB_HOST: dbtest
-    - name: create network
-      run: |
-        puma-network-test
+        IP_ADDRESS: localhost
+        SECRET: kronk
+        DB_HOST: localhost
+
     - name: containers
       run: |
         docker container ps -a       
