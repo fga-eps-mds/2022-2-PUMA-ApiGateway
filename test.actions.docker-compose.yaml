@@ -28,7 +28,7 @@ services:
         command:
           [
               "./wait-for-it.sh",
-              "dbtest:${DB_HOST}",
+              "dbtest:5432",
               "--",
               "npm",
               "run",
@@ -39,7 +39,8 @@ services:
         environment:
             ENVIRONMENT: test
         build:
-            context: ${USER_PATH}/
+            context: .
+            dockefile: test.Dockerfile
         ports:
             - 3001:3001
         depends_on:
@@ -50,7 +51,7 @@ services:
         command:
           [
               "./wait-for-it.sh",
-              "dbtest:${DB_HOST}",
+              "dbtest:5432",
               "--",
               "npm",
               "run",
