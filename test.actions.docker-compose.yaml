@@ -1,28 +1,5 @@
 version: "3"
 services:
-    project-service-test:
-        container_name: project-service-test
-        environment:
-            ENVIRONMENT: test
-        build:
-            context: ${PROJECT_PATH}/
-            dockerfile: dev.Dockerfile
-        ports:
-            - "3000:3000"
-        volumes:
-            - ./${PROJECT_PATH}:/app
-            - /app/node_modules
-        networks:
-            - puma-network-test
-        command:
-          [
-              "./wait-for-it.sh",
-              "dbtest:5432",
-              "--",
-              "npm",
-              "run",
-              "start-dev"
-          ]
     user-service-test:
         container_name: user-service-test
         environment:
