@@ -9,7 +9,7 @@ services:
             POSTGRES_DB: ${DB}
             DATABASE_URL: ${DB_URL_TEST}
         ports:
-            - 172.17.0.1:5432:5432
+            - 5432:5432
         restart: always
     project-service-test:
         container_name: project-service-test
@@ -19,7 +19,7 @@ services:
             context: ${PROJECT_PATH}/
             dockerfile: dev.Dockerfile
         ports:
-            - 172.17.0.1:3000:3000
+            - 3000:3000
         depends_on:
             - dbtest
         volumes:
@@ -42,7 +42,7 @@ services:
             context: ${USER_PATH}/
             dockerfile: dev.Dockerfile
         ports:
-            - 172.17.0.1:3001:3001
+            - 3001:3001
         depends_on:
             - dbtest
         volumes:
