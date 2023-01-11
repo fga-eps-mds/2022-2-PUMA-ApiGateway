@@ -10,8 +10,7 @@ services:
             DATABASE_URL: ${DB_URL_TEST}
         ports:
             - "5432:5432"
-        networks:
-            - puma-network-test
+        restart: always
     project-service-test:
         container_name: project-service-test
         environment:
@@ -26,8 +25,6 @@ services:
         volumes:
             - ./${PROJECT_PATH}:/app
             - /app/node_modules
-        networks:
-            - puma-network-test
         command:
           [
               "./wait-for-it.sh",
@@ -51,8 +48,6 @@ services:
         volumes:
             - ./${USER_PATH}:/app
             - /app/node_modules
-        networks:
-            - puma-network-test
         command:
           [
               "./wait-for-it.sh",
@@ -74,8 +69,3 @@ services:
         volumes:
             - ./:/app
             - /app/node_modules
-        networks:
-            - puma-network-test
-
-networks:
-    puma-network-test:
