@@ -62,8 +62,6 @@ services:
         container_name: api-gateway-test
         environment:
             ENVIRONMENT: test
-            DB_URL_TEST: postgres://pumaadmin:pumaadmin@dbtest:5432/puma
-            DB_URL: postgres://pumaadmin:pumaadmin@dbtest:5432/puma
         build:
             context: .
             dockerfile: dev.Dockerfile
