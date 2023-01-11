@@ -11,12 +11,28 @@ services:
         ports:
             - 5432:5432
         restart: always
+    project-service-test:
+        container_name: project-service-test
+        environment:
+            ENVIRONMENT: test
+            DB_URL_TEST: postgres://pumaadmin:pumaadmin@172.17.0.1:5432/puma
+            DB_URL: postgres://pumaadmin:pumaadmin@172.17.0.1:5432/puma
+        build:
+            context: ${PROJECT_PATH}/
+            dockerfile: test.Dockerfile
+        ports:
+            - 3000:3000
+        depends_on:
+            - dbtest
+        volumes:
+            - ./${PROJECT_PATH}:/app
+            - /app/node_modules
     user-service-test:
         container_name: user-service-test
         environment:
             ENVIRONMENT: test
-            DB_URL_TEST: postgres://pumaadmin:pumaadmin@8.8.8.8:5432/puma
-            DB_URL: postgres://pumaadmin:pumaadmin@8.8.8.8:5432/puma
+            DB_URL_TEST: postgres://pumaadmin:pumaadmin@172.17.0.1:5432/puma
+            DB_URL: postgres://pumaadmin:pumaadmin@172.17.0.1:5432/puma
         build:
             context: ${USER_PATH}/
             dockerfile: test.Dockerfile
