@@ -46,20 +46,6 @@ services:
               "run",
               "start-dev"
           ]
-    api-gateway-test:
-        container_name: api-gateway-test
-        environment:
-            ENVIRONMENT: test
-        build:
-            context: .
-            dockerfile: dev.Dockerfile
-        ports:
-            - "3004:3004"
-        volumes:
-            - ./:/app
-            - /app/node_modules
-        networks:
-            - puma-network-test
 
     # frontend-test:
     #     container_name: frontend-test
