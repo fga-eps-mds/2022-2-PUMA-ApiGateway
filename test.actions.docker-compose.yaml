@@ -28,7 +28,7 @@ services:
         command:
           [
               "./wait-for-it.sh",
-              "localhost:5432",
+              "dbtest:5432",
               "--",
               "npm",
               "run",
@@ -51,7 +51,7 @@ services:
         command:
           [
               "./wait-for-it.sh",
-              "localhost:5432",
+              "dbtest:5432",
               "--",
               "npm",
               "run",
