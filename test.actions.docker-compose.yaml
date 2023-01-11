@@ -1,5 +1,17 @@
 version: "3"
 services:
+    dbtest:
+        container_name: dbtest
+        image: postgres
+        environment:
+            POSTGRES_PASSWORD: ${DB_PASS}
+            POSTGRES_USER: ${DB_USER}
+            POSTGRES_DB: ${DB}
+            DATABASE_URL: ${DB_URL_TEST}
+        ports:
+            - "5432:5432"
+        networks:
+            - puma-network-test
     user-service-test:
         container_name: user-service-test
         environment:
@@ -17,7 +29,7 @@ services:
         command:
           [
               "./wait-for-it.sh",
-              "localhost:5432",
+              "dbtest:5432",
               "--",
               "npm",
               "run",
@@ -38,3 +50,5 @@ services:
     #         - /app/node_modules
     #     networks:
     #         - puma-network-test
+networks:
+    puma-network-test:
