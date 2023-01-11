@@ -16,7 +16,6 @@ jobs:
     env:
       USER_PATH: 2022-2-PUMA-UserService 
       PROJECT_PATH: 2022-2-PUMA-ProjectService
-      DB_URL_TEST: postgres://pumaadmin:pumaadmin@dbtest:5432/puma
       DB_HOST: dbtest
       DB_USER: pumaadmin
       DB_PASS: pumaadmin
