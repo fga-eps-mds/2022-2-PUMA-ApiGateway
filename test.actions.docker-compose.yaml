@@ -42,14 +42,14 @@ services:
         environment:
             ENVIRONMENT: test
         build:
-            context: {USER_PATH}/
+            context: ${USER_PATH}/
             dockerfile: dev.Dockerfile
         ports:
             - "3001:3001"
         depends_on:
             - dbtest
         volumes:
-            - {USER_PATH}:/app
+            - ${USER_PATH}:/app
             - /app/node_modules
         networks:
             - puma-network-test
