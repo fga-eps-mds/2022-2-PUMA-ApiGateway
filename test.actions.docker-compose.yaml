@@ -29,7 +29,7 @@ services:
         command:
           [
               "./wait-for-it.sh",
-              "dbtest:5432",
+              "dbtest:${DB_HOST}",
               "--",
               "npm",
               "run",
@@ -52,7 +52,7 @@ services:
         command:
           [
               "./wait-for-it.sh",
-              "dbtest:5432",
+              "dbtest:${DB_HOST}",
               "--",
               "npm",
               "run",
