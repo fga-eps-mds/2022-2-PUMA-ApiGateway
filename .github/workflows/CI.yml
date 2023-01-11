@@ -39,11 +39,14 @@ jobs:
         repository: fga-eps-mds/2022-2-PUMA-ProjectService
         path: 2022-2-PUMA-ProjectService
     
-    - name: Build and up containers
-      run: docker-compose -f test.actions.docker-compose.yaml up -d
+    #- name: Build and up containers
+    #  run: docker-compose -f test.actions.docker-compose.yaml up -d
       
-    - name: Run tests
-      run: docker exec api-gateway-test npm run test-coverage
+    #- name: Run tests
+    #  run: docker exec api-gateway-test npm run test-coverage
+    
+    - name: Run make
+      run: make run test-debug
 
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
