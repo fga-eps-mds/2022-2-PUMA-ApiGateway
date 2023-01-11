@@ -40,7 +40,7 @@ services:
             ENVIRONMENT: test
         build:
             context: ${USER_PATH}/
-            dockefile: test.Dockerfile
+            dockerfile: test.Dockerfile
         ports:
             - 3001:3001
         depends_on:
