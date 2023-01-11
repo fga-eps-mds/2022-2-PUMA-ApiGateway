@@ -55,9 +55,7 @@ jobs:
         path: 2022-2-PUMA-ProjectService
     
     - name: up containers 
-      uses: isbang/compose-action@v1.4.1
-      with:
-        compose-file: "./test.actions.docker-compose.yaml"
+      run: sudo docker-compose -f test.actions.docker-compose.yaml --build 
       env:
         USER_PATH: 2022-2-PUMA-UserService 
         PROJECT_PATH: 2022-2-PUMA-ProjectService
@@ -67,6 +65,7 @@ jobs:
         DB: puma
         IP_ADDRESS: localhost
         SECRET: kronk
+        DB_HOST: localhost
 
     - name: test user test
       run: |
