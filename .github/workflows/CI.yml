@@ -52,6 +52,7 @@ jobs:
         DB_USER: pumaadmin
         DB_PASS: pumaadmin
         DB: puma
+        DB_HOST: dbtest
     - name: create network
       run: |
         puma-network-test
