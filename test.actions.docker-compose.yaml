@@ -7,7 +7,7 @@ services:
             POSTGRES_PASSWORD: ${DB_PASS}
             POSTGRES_USER: ${DB_USER}
             POSTGRES_DB: ${DB}
-            
+            DATABASE_URL: ${DB_URL_TEST}
         ports:
             - 5432:5432
         restart: always
@@ -15,6 +15,7 @@ services:
         container_name: project-service-test
         environment:
             ENVIRONMENT: test
+            DATABASE_URL: ${DB_URL_TEST}
         build:
             context: ${PROJECT_PATH}/
             dockerfile: dev.Dockerfile
@@ -61,6 +62,8 @@ services:
         container_name: api-gateway-test
         environment:
             ENVIRONMENT: test
+            DB_URL_TEST: postgres://pumaadmin:pumaadmin@dbtest:5432/puma
+            DB_URL: postgres://pumaadmin:pumaadmin@dbtest:5432/puma
         build:
             context: .
             dockerfile: dev.Dockerfile
