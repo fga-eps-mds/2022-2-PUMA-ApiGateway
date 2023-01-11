@@ -39,21 +39,11 @@ jobs:
         repository: fga-eps-mds/2022-2-PUMA-ProjectService
         path: 2022-2-PUMA-ProjectService
     
-    #- name: Build and up containers
-    #  run: docker-compose -f test.actions.docker-compose.yaml up -d
+    - name: Build and up containers
+      run: docker-compose -f test.actions.docker-compose.yaml up -d
       
-    #- name: Run tests
-    #  run: docker exec api-gateway-test npm run test-coverage
-    
-    - name: Run make
-      run: make test-coverage
-      env:
-        USER_PATH: 2022-2-PUMA-UserService 
-        PROJECT_PATH: 2022-2-PUMA-ProjectService
-        DB_USER: pumaadmin
-        DB_PASS: pumaadmin
-        DB: puma
-        DB_URL_TEST: postgres://pumaadmin:pumaadmin@172.17.0.1:5432/puma
+    - name: Ping
+      run: docker exec -ti user-service-test ping dbtest
 
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
