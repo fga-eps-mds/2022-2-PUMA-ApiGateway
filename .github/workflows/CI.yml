@@ -21,8 +21,13 @@ jobs:
       with:
         node-version: 14.x
 
-    - name: Run npm install
-      run: npm install
+    - name: Tests
+      uses: cloudposse/github-action-docker-compose-test-run@main
+      with:
+        file: test.actions.docker-compose.yaml
+        service: api-gateway-test 
+        command: npm run test-coverage
+
 
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
