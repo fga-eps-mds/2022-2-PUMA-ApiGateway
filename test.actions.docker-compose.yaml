@@ -18,7 +18,6 @@ services:
             DATABASE_URL: ${DB_URL_TEST}
         build:
             context: ${PROJECT_PATH}/
-            dockerfile: dev.Dockerfile
         ports:
             - 3000:3000
         depends_on:
@@ -41,7 +40,6 @@ services:
             ENVIRONMENT: test
         build:
             context: ${USER_PATH}/
-            dockerfile: dev.Dockerfile
         ports:
             - 3001:3001
         depends_on:
