@@ -60,6 +60,7 @@ jobs:
     - name: Copy report
       run: docker exec api-gateway-test ps
 
+
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
       env:
