@@ -36,13 +36,13 @@ test-down:
 	sudo docker-compose -f test.docker-compose.yaml down
 
 test-coverage:
-	(sudo docker-compose -f test.docker-compose.yaml up --build -d && \
+	(sudo docker-compose -f test.actions.docker-compose.yaml up --build -d && \
 	sudo chmod +x ./tests/utils/db_script_test.sh ./tests/utils/wait-for-it-test.sh && \
 	(./tests/utils/wait-for-it-test.sh dbtest:5432 -- true && echo "\033[92mInserting data to database... \033[0m" && \
 	./tests/utils/db_script_test.sh drop && ./tests/utils/db_script_test.sh create && ./tests/utils/db_script_test.sh populate);\
 	echo "\033[96mRunning Tests...\033[0m" && \
-	sudo docker-compose -f test.docker-compose.yaml exec -T api-gateway-test npm run test-coverage);\
-	sudo docker-compose -f test.docker-compose.yaml down
+	sudo docker-compose -f test.actions.docker-compose.yaml exec -T api-gateway-test npm run test-coverage);\
+	sudo docker-compose -f test.actions.docker-compose.yaml down
 
 
 
