@@ -17,6 +17,7 @@ services:
         environment:
             ENVIRONMENT: test
             DB_URL_TEST: postgres://pumaadmin:pumaadmin@dbtest:5432/puma
+            SECRET: kronk
         build:
             context: ./${PROJECT_PATH}/
             dockerfile: test.Dockerfile
@@ -43,6 +44,7 @@ services:
         environment:
             ENVIRONMENT: test
             DB_URL_TEST: postgres://pumaadmin:pumaadmin@dbtest:5432/puma
+            SECRET: kronk
         build:
             context: ./${USER_PATH}/
             dockerfile: test.Dockerfile
@@ -69,6 +71,8 @@ services:
         container_name: api-gateway-test
         environment:
             ENVIRONMENT: test
+            DB_URL_TEST: postgres://pumaadmin:pumaadmin@dbtest:5432/puma
+            SECRET: kronk
         build:
             context: .
             dockerfile: dev.Dockerfile
