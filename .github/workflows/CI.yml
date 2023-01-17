@@ -42,7 +42,7 @@ jobs:
         path: 2022-2-PUMA-ProjectService
 
     - name: Build and up containers
-      run: docker-compose -f test.actions.docker-compose.yaml up
+      run: docker-compose -f test.actions.docker-compose.yaml up -d
     
     - name: Create and Populate Database
       run: | 
