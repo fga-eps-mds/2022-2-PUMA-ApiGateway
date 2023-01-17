@@ -59,9 +59,7 @@ jobs:
       
     - name: Copy report
       run: |
-          docker exec api-gateway-test ls
-          ls
-
+          docker exec api-gateway-test cat ./coverage/lcov.info
 
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
