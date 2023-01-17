@@ -9,9 +9,9 @@ module.exports = {
       global.URL_HOM = `http://${process.env.IP_ADDRESS}:8080`;
       global.SECRET = process.env.SECRET;
     } else if (process.env.ENVIRONMENT === 'test') {
-      global.URL_GATEWAY = `http://api-gateway-test:3004`;
-      global.URL_USER = `http://user-service-test:3001`;
-      global.URL_PROJECT = `http://project-service-test:3000`;
+      global.URL_GATEWAY = `http://127.17.0.1:3004`;
+      global.URL_USER = `http://127.17.0.1:3001`;
+      global.URL_PROJECT = `http://127.17.0.1:3000`;
       global.URL_HOM = `http://${process.env.IP_ADDRESS}:8080`;
       global.SECRET = process.env.SECRET;
     } else if (process.env.ENVIRONMENT === 'hom') {
