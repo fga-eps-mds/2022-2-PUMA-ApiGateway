@@ -19,7 +19,7 @@ services:
             DB_URL_TEST: postgres://pumaadmin:pumaadmin@dbtest:5432/puma
         build:
             context: ./${PROJECT_PATH}/
-            dockerfile: dev.Dockerfile
+            dockerfile: test.Dockerfile
         ports:
             - "3000:3000"
         depends_on:
@@ -45,7 +45,7 @@ services:
             DB_URL_TEST: postgres://pumaadmin:pumaadmin@dbtest:5432/puma
         build:
             context: ./${USER_PATH}/
-            dockerfile: dev.Dockerfile
+            dockerfile: test.Dockerfile
         ports:
             - "3001:3001"
         depends_on:
