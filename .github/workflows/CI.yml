@@ -59,7 +59,6 @@ jobs:
       
     - name: Copy report
       run: |
-          mkdir coverage
           docker cp api-gateway-test:./coverage/lcov.info ./coverage/lcov.info
           cat ./coverage/lcov.info
 
