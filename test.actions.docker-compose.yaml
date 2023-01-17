@@ -16,6 +16,7 @@ services:
         container_name: project-service-test
         environment:
             ENVIRONMENT: test
+            DB_URL_TEST: postgres://pumaadmin:pumaadmin@127.17.0.1:5432/puma
         build:
             context: ./${PROJECT_PATH}/
             dockerfile: test.Dockerfile
@@ -41,6 +42,7 @@ services:
         container_name: user-service-test
         environment:
             ENVIRONMENT: test
+            DB_URL_TEST: postgres://pumaadmin:pumaadmin@127.17.0.1:5432/puma
         build:
             context: ./${USER_PATH}/
             dockerfile: test.Dockerfile
