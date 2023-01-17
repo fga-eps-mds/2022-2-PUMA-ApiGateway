@@ -58,7 +58,9 @@ jobs:
       run: docker exec api-gateway-test npm run test-coverage
       
     - name: Copy report
-      run: docker exec api-gateway-test ps
+      run: |
+          docker exec api-gateway-test ls
+          ls
 
 
     - name: SonarCloud Scan
