@@ -42,10 +42,8 @@ jobs:
         path: 2022-2-PUMA-ProjectService
 
     - name: Build and up containers
-      run: docker-compose -f test.actions.docker-compose.yaml up -d
-    
-    - name: Requests
-      run: |
+      run: | 
+          docker-compose -f test.actions.docker-compose.yaml up -d
           curl -i -H "Accept: application/json" -H "Content-Type: application/json" http://127.17.0.1:3000/
           curl -i -H "Accept: application/json" -H "Content-Type: application/json" http://127.17.0.1:3001/
           curl -i -H "Accept: application/json" -H "Content-Type: application/json" http://127.17.0.1:3004/project/initial
