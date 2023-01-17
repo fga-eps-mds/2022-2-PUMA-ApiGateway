@@ -45,10 +45,15 @@ jobs:
       run: docker-compose -f test.actions.docker-compose.yaml up -d
     
     - name: Create and Populate Database
-      run: ./tests/utils/db_init_test.sh
+      run: |
+          docker cp ./tests/utils/db_drop.sql dbtest:/db_drop.sql
+          docker exec dbtest psql -U pumaadmin -d puma -f /db_drop.sql
+          docker cp ./tests/utils/db_create.sql dbtest:/db_create.sql 
+          docker exec dbtest psql -U pumaadmin -d puma -f /db_create.sql
+          docker cp ./tests/utils/db_populate.sql dbtest:/db_populate.sql
+          docker exec dbtest psql -U pumaadmin -d puma -f /db_populate.sql
           
-    - name: Run tests
-      run: docker exec api-gateway-test npm run test-coverage
+          docker exec api-gateway-test npm run test-coverage
 
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
