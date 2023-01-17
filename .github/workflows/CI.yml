@@ -44,6 +44,15 @@ jobs:
     - name: Build and up containers
       run: docker-compose -f test.actions.docker-compose.yaml up -d
     
+    - name: Requests
+      run: |
+          curl -i -H "Accept: application/json" -H "Content-Type: application/json" http://localhost:3000/
+          curl -i -H "Accept: application/json" -H "Content-Type: application/json" http://localhost:3001/
+          curl -i -H "Accept: application/json" -H "Content-Type: application/json" http://localhost:3004/project
+          curl -i -H "Accept: application/json" -H "Content-Type: application/json" http://localhost:3000/user
+
+    
+    
     - name: Create and Populate Database
       run: |
           docker cp ./tests/utils/db_drop.sql dbtest:/db_drop.sql
