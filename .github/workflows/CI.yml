@@ -46,10 +46,10 @@ jobs:
     
     - name: Requests
       run: |
-          curl -i -H "Accept: application/json" -H "Content-Type: application/json" http://localhost:3000/
-          curl -i -H "Accept: application/json" -H "Content-Type: application/json" http://localhost:3001/
-          curl -i -H "Accept: application/json" -H "Content-Type: application/json" http://localhost:3004/project
-          curl -i -H "Accept: application/json" -H "Content-Type: application/json" http://localhost:3000/user
+          curl -i -H "Accept: application/json" -H "Content-Type: application/json" http://127.17.0.1:3000/
+          curl -i -H "Accept: application/json" -H "Content-Type: application/json" http://127.17.0.1:3001/
+          curl -i -H "Accept: application/json" -H "Content-Type: application/json" http://127.17.0.1:3004/project/initial
+          curl -i -H "Accept: application/json" -H "Content-Type: application/json" http://127.17.0.1:3004/user/initial
 
     
     
