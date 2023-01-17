@@ -56,6 +56,9 @@ jobs:
     
     - name: Test
       run: docker exec api-gateway-test npm run test-coverage
+      
+    - name: Copy report
+      run: docker exec api-gateway-test ps
 
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
